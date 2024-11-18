@@ -17,3 +17,9 @@ This project has been developed to test the GitHub Actions as part of a CI/DC wo
   ``` sh
   pip install -r requirements.txt
   ```
+- Run the tests
+  ```sh
+  pytest --cov --cov-report term-missing
+  ```
+  
+
