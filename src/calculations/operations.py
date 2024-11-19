@@ -1,4 +1,4 @@
-def fibonacci(number: int) -> int:
+def fibonacci(number: int) -> int | ValueError:
     """
     Calculates the Fibonacci value for the desired number
 
