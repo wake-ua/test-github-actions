@@ -15,4 +15,3 @@ def test_generate_html():
                      "\n\t\t\t<li>calculate_square(3) = 9</li>" \
                      "\n\t\t</ul>" \
                      "\n\t</body>\n</html>"
-# [1, 4, 9]

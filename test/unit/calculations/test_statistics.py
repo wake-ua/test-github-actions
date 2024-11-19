@@ -18,4 +18,3 @@ def test_event_probability_outcomes_greater_than_space():
         src.calculations.statistics.event_probability(5, 3)
     assert str(error.value) == "Event outcomes should be lower or equal than" \
                                " sample space"
-
