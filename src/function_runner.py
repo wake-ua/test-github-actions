@@ -25,4 +25,3 @@ def get_event_probability_series_html(maximum: int) -> str:
     input_list = [(i, maximum) for i in range(0, maximum)]
     html = generate_html(input_list, event_probability)
     return html
-
