@@ -1,11 +1,14 @@
 #!/usr/bin/python
 
-# Gather our code in a main() function
-def main():
-    print("Hello world!")
+from src.routers import function
+from fastapi import FastAPI
+
+app = FastAPI()
 
 
-# Standard boilerplate to call the main() function to begin
-# the program.
-if __name__ == '__main__':
-    main()
+app.include_router(function.router)
+
+
+@app.get("/")
+def read_root():
+    return {"message": "Hello World"}
