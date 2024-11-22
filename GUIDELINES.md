@@ -1,3 +1,17 @@
+
+## Table of Contents
+
+**[1. Coding Guidelines](#heading--1)**
+
+**[2. CI/CD Workflow](#heading--2)**
+
+**[3. References](#heading--3)**
+
+----
+
+
+<div id="heading--1"/>
+
 # Coding Guidelines
 
 ## Names
@@ -234,12 +248,14 @@ my_dict ={
 
 #we import the module we need
 import numpy as np
+
 #help function
 def DictToArray(d):
- """Convert dictionary values ​​to numpy array"""
+ """Convert dictionary values to numpy array"""
  #extract values ​​and convert
  x=np.array(d.values())
  return x
+
 # This is an unnecessarily long comment line that should be split into several lines
 print(DictToArray(my_dict))
 
@@ -253,10 +269,71 @@ class my_class:
 !flake8 test.py
 ```
 
+## Function definition with types
+
+Whenever possible it is recommended to indicate the parameter and return types of a function both in the docstring and
+in the code. It is also desired to declare the exceptions that may be thrown by the code as in the code example below.
+
+```python
+
+def fibonacci(number: int) -> int | ValueError:
+    """ 
+    Calculates the Fibonacci value for the desired number
+
+    :param number: integer defining the desired position within the series
+    :returns: the numeric value of the Fibonacci series
+    :raises ValueError: raises an exception if the input value is
+                        lower than zero
+    """
+    if number < 0:
+        raise ValueError("Input number should be equal or greater than 0.")
+    elif number == 0:
+        return 0
+    elif number == 1 or number == 2:
+        return 1
+    else:
+        return fibonacci(number - 1) + fibonacci(number - 2)
+```
+
+
+------
+<div id="heading--2"/>
+
+# CI/CD Workflow
+
+Te development of the project follows a continuous integration and continuous development workflow. 
+The image below shows an overview of the process.
+
+![CI CD Workflow Image](./images/ci_cd_workflow.png "Git CI/CD Workflow")
+
+The repository consists of two permanent branches:
+* *main*: Production branch that contains the current changes in production or pre-production.  
+* *develop*: Daily work branch that contains the latest changes made to the project. 
+
+Unit and integration tests are automatically run on every push by a GitHub Actions workflow defined at
+[python-app.yml](.github/workflows/python-app.yml). 
+Additionally, it runs a flake8 check to ensure the PEP8 standard described in the previous section is followed.
+
+Before pushing any changes to the development branch always ensure the tests pass, the coverage is 100% and that 
+the PEP8 standard is respected by using the following commands:
+```commandline
+flake8 . --count --exclude venv
+pytest --cov --cov-report term-missing
+```
+
+Never push or merge from *develop* to *main*, always do a PR instead. 
+Ideally a PR should be accepted and merged by a different team member as the request to ensure code readability.
+
+
+-----
+<div id="heading--3"/>
+
 # References
 
 * [A Five-Minute Introduction to Python's Style Guide: PEP 8](https://medium.com/code-85/a-five-minute-introduction-to-pythons-style-guide-pep-8-57202886265f )
 * [A Summary of PEP 8: Style Guide for Python Code](https://tandysony.com/2018/02/14/pep-8.html)
 * [An Overview of The PEP 8 Style Guide](https://towardsdatascience.com/an-overview-of-the-pep-8-style-guide-5672459c7682)
 * [What is PEP 8 and why should I implement it?](https://dev.to/viktorvillalobos/what-is-pep-8-and-why-should-Implement-it-54bh)
+
+
 
