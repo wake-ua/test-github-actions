@@ -21,5 +21,13 @@ This project has been developed to test the GitHub Actions as part of a CI/DC wo
   ```sh
   pytest --cov --cov-report term-missing
   ```
-  
+
+## Starting the App
+
+Save the [dotenv](dotenv) file as '.env' and set the desired `PORT` and `HOST` variables.
+
+Run the app
+```commandline
+   fastapi dev main.py
+```
 

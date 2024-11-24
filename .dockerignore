@@ -1,0 +1,9 @@
+.coverage
+venv
+.pytest_cache
+.github
+.coverage
+.idea
+.env
+.git
+.DS_Store
