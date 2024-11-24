@@ -38,7 +38,7 @@ app.include_router(function.router)
 
 @app.get("/")
 def root():
-    return {"message": "Hello, World!"}
+    return {"message": "Hello World!"}
 
 
 if __name__ == "__main__":
